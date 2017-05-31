@@ -1,8 +1,5 @@
 FROM node:alpine
-ENV NODE_ENV production
-WORKDIR /var/www/gipsi/src/
-COPY ["package.json", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
-COPY . .
+COPY . /var/www/
+WORKDIR /var/www/gipsi/
+RUN npm install
 EXPOSE 3030
-CMD npm start
