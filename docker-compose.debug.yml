@@ -1,0 +1,14 @@
+version: '2.1'
+
+services:
+  gipsi:
+    image: gipsi
+    build: .
+    environment:
+      NODE_ENV: development
+    ports:
+      - 3030:3030
+      - 9229:9229
+    volumes:
+      - .:/usr/src/app
+    command: node --inspect src/
