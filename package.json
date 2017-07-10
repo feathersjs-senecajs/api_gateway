@@ -11,6 +11,10 @@
     "name": "Celso Bring",
     "email": "cbringf@gmail.com"
   },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/npm/npm.git"
+  },
   "contributors": [],
   "bugs": {},
   "directories": {
