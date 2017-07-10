@@ -1,11 +1,13 @@
-
+const fileToURIParser = require('../../hooks/file.parser');
+const clearResponse = require('../../hooks/file.response');
+const logger = require('../../hooks/logger');
 
 module.exports = {
 	before: {
-		all: [],
+		all: [logger()],
 		find: [],
 		get: [],
-		create: [],
+		create: [fileToURIParser()],
 		update: [],
 		patch: [],
 		remove: []
@@ -15,7 +17,7 @@ module.exports = {
 		all: [],
 		find: [],
 		get: [],
-		create: [],
+		create: [clearResponse()],
 		update: [],
 		patch: [],
 		remove: []
