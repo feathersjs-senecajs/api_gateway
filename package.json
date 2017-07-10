@@ -12,8 +12,8 @@
     "email": "cbringf@gmail.com"
   },
   "repository": {
-    "type" : "git",
-    "url" : "https://github.com/npm/npm.git"
+    "type": "git",
+    "url": "https://github.com/npm/npm.git"
   },
   "contributors": [],
   "bugs": {},
