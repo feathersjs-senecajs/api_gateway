@@ -36,5 +36,5 @@ module.exports = {
 			type: 'string'
 		}
 	},
-	required: ['name', 'categoryId', 'latitude', 'longitude']
+	required: ['name', 'category', 'latitude', 'longitude']
 };
