@@ -28,6 +28,12 @@ module.exports = {
 		},
 		longitude: {
 			type: 'number'
+		},
+		avatar: {
+			type: 'string'
+		},
+		background: {
+			type: 'string'
 		}
 	},
 	required: ['name', 'categoryId', 'latitude', 'longitude']
