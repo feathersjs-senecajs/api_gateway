@@ -1,13 +1,15 @@
-
+const ajv = require('ajv');
+const validateSchema = require('feathers-hooks-common').validateSchema;
+const schema = require('../../models/schemas/poi');
 
 module.exports = {
 	before: {
 		all: [],
 		find: [],
 		get: [],
-		create: [],
-		update: [],
-		patch: [],
+		create: [validateSchema(schema, ajv)],
+		update: [validateSchema(schema, ajv)],
+		patch: [validateSchema(schema, ajv)],
 		remove: []
 	},
 
