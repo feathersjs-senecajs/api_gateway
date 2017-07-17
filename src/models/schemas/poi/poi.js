@@ -23,10 +23,10 @@ module.exports = {
 			type: 'string',
 			maxLength: 300
 		},
-		latitude: {
+		lat: {
 			type: 'number'
 		},
-		longitude: {
+		lng: {
 			type: 'number'
 		},
 		avatar: {
@@ -36,5 +36,5 @@ module.exports = {
 			type: 'string'
 		}
 	},
-	required: ['name', 'category', 'latitude', 'longitude']
+	required: ['name', 'category', 'lat', 'lng']
 };
