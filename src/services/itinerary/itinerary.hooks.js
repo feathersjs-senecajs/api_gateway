@@ -1,6 +1,8 @@
 const ajv = require('ajv');
 const validateSchema = require('feathers-hooks-common').validateSchema;
-const schema = require('../../models/schemas/poi-category/poi-category');
+const schema = require('../../models/schemas/itinerary/itinerary');
+const populate = require('feathers-hooks-common').populate;
+const populateSchema = require('../../models/schemas/itinerary/itinerary-vm');
 
 module.exports = {
 	before: {
@@ -15,8 +17,8 @@ module.exports = {
 
 	after: {
 		all: [],
-		find: [],
-		get: [],
+		find: [populate({ schema: populateSchema })],
+		get: [populate({ schema: populateSchema })],
 		create: [],
 		update: [],
 		patch: [],
