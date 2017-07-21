@@ -1,7 +1,9 @@
-module.export = function (hook) {
-	var poiTypes = hook.result.poi_types;
+module.export = function () {
+	return function (hook) {
+		var poiTypes = hook.result.poi_types;
 
-	if (poiTypes && !poiTypes.constructor === Array) {
-		hook.result.poi_types = [poiTypes];
+		if (poiTypes && !poiTypes.constructor === Array) {
+			hook.result.poi_types = [poiTypes];
+		}
 	}
 }
