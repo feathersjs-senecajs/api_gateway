@@ -1,4 +1,4 @@
-module.export = function () {
+module.exports = function () {
 	return function (hook) {
 		var poiTypes = hook.result.poi_types;
 
