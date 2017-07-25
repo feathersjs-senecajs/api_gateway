@@ -1,6 +1,6 @@
 module.exports = function () {
 	function buildGeoJSON(data) {
-		return data ? {
+		return {
 			overlays: [{
 				id: "Wifi free",
 				category: "green",
@@ -15,13 +15,15 @@ module.exports = function () {
 					}
 				}))
 			}]
-		} : {};
+		};
 	}
 
 	return function (hook) { 
-		hook.result.data = {
-			poiList: hook.result.data,
-			geoJSON: buildGeoJSON(hook.result.data)
-		};
+		if (hook.result.data) {
+			hook.result.data = {
+				poiList: hook.result.data,
+				geoJSON: buildGeoJSON(hook.result.data)
+			};
+		}
 	};
 };
