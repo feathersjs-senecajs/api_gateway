@@ -3,6 +3,7 @@ module.exports = {
 		service: 'poi-type',
 		nameAs: 'poi_types',
 		parentField: '_id',
-		childField: 'category'
+		childField: 'category',
+		asArray: true
 	}
 };

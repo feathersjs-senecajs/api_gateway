@@ -1,6 +1,7 @@
 const ajv = require('ajv');
 const validateSchema = require('feathers-hooks-common').validateSchema;
 const schema = require('../../models/schemas/poi/poi');
+const geoJson = require('../../hooks/geojson');
 
 module.exports = {
 	before: {
@@ -15,8 +16,8 @@ module.exports = {
 
 	after: {
 		all: [],
-		find: [],
-		get: [],
+		find: [geoJson()],
+		get: [geoJson()],
 		create: [],
 		update: [],
 		patch: [],

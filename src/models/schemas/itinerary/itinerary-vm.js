@@ -3,6 +3,7 @@ module.exports = {
 		service: 'points',
 		nameAs: 'points',
 		parentField: 'points',
-		childField: '_id'
+		childField: '_id',
+		asArray: true
 	}
 };
