@@ -1,10 +1,10 @@
 module.exports = function () {
 	function buildGeoJSON(data) {
-		return {
+		return data ? {
 			overlays: [{
 				id: "Wifi free",
 				category: "green",
-				points: data.map(item => new Object({ 
+				points: data.map(item => new Object({
 					type: "Feature",
 					properties: {
 						name: item.name
@@ -14,7 +14,8 @@ module.exports = function () {
 						coordinates: [item.lng, item.lat]
 					}
 				}))
-			}]};
+			}]
+		} : {};
 	}
 
 	return function (hook) { 
