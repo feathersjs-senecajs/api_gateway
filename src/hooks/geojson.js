@@ -1,20 +1,24 @@
+var _ = require('lodash');
+
 module.exports = function () {
 	function buildGeoJSON(data) {
 		return {
-			overlays: [{
-				id: "Wifi free",
-				category: "green",
-				points: data.map(item => new Object({
-					type: "Feature",
-					properties: {
-						name: item.name
-					},
-					geometry: {
-						type: "Point",
-						coordinates: [item.lng, item.lat]
-					}
-				}))
-			}]
+			overlays: _.map(data, (item, key) => {
+				return {
+					id: key,
+					category: key,
+					points: Object.values(item).map((value) => new Object({
+						type: 'Feature',
+						properties: {
+							name: value.name
+						},
+						geometry: {
+							type: 'Point',
+							coordinates: [value.lng, value.lat]
+						}
+					}))
+				};
+			})
 		};
 	}
 
@@ -22,7 +26,7 @@ module.exports = function () {
 		if (hook.result.data) {
 			hook.result.data = {
 				poiList: hook.result.data,
-				geoJSON: buildGeoJSON(hook.result.data)
+				geoJSON: buildGeoJSON(_.groupBy(hook.result.data, 'category'))
 			};
 		}
 	};
