@@ -1,9 +1,9 @@
 module.exports = {
 	include: {
-		service: 'points',
-		nameAs: 'points',
-		parentField: 'points',
-		childField: '_id',
+		service: 'poi-event',
+		nameAs: 'poi_events',
+		parentField: '_id',
+		childField: 'itinerary',
 		asArray: true
 	}
 };
