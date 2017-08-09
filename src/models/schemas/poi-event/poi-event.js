@@ -11,12 +11,12 @@ module.exports = {
 		date: {
 			type: 'string',
 		},
-		poi: {
+		poiId: {
 			type: 'string'
 		},
 		itinerary: {
 			type: 'string'
 		}
 	},
-	required: ['name', 'description', 'date', 'poi']
+	required: ['name', 'description', 'date', 'poiId']
 };
