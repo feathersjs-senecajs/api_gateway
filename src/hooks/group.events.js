@@ -7,7 +7,7 @@ module.exports = function () {
 				return w.eventIds.map(id =>
 					item.poi_events[_.findIndex(item.poi_events, { _id: id })]
 				);
-			});
+			}).sort((w1, w2) => w1.day - w2.day);
 			delete item.poi_events;
 			return item;
 		});
