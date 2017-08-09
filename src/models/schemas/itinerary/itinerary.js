@@ -33,7 +33,7 @@ module.exports = {
 			type: 'number'
 		}
 	},
-	required: ['name', 'summary', 'descriptions', 'days']
+	required: ['title', 'summary', 'description', 'days']
 };
 
 //todo: Define if an itinerary can be created without points
