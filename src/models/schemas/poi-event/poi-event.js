@@ -18,5 +18,5 @@ module.exports = {
 			type: 'string'
 		}
 	},
-	required: ['name', 'description', 'date', 'poi', 'itinerary']
+	required: ['name', 'description', 'date', 'poi']
 };
