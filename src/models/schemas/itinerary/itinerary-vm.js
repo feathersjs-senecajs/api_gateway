@@ -1,5 +1,6 @@
 module.exports = {
 	include: {
+		asArray: true,
 		service: 'poi-event',
 		nameAs: 'poi_events',
 		select: (hook, parentItem) => {
@@ -8,7 +9,6 @@ module.exports = {
 					return { _id: e };
 				});
 			});
-		},
-		asArray: true
+		}
 	}
 };
