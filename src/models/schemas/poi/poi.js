@@ -29,10 +29,13 @@ module.exports = {
 		lng: {
 			type: 'number'
 		},
-		avatar: {
+		poster: {
 			type: 'string'
 		},
-		background: {
+		video: {
+			type: 'string'
+		},
+		avatar: {
 			type: 'string'
 		}
 	},
