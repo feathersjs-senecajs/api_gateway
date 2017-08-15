@@ -4,8 +4,10 @@
 module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
 	return function (hook) {
 		let events = hook.app.service('poi-event');
+		let result = hook.result.constructor === Array ?
+			hook.result : [hook.result];
 
-		hook.result.forEach(item => {
+		result.forEach(item => {
 			item.events.forEach(event => {
 				event.eventIds.forEach(id => {
 					events.remove(id);
