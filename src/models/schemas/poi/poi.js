@@ -23,18 +23,21 @@ module.exports = {
 			type: 'string',
 			maxLength: 300
 		},
-		latitude: {
+		lat: {
 			type: 'number'
 		},
-		longitude: {
+		lng: {
 			type: 'number'
+		},
+		poster: {
+			type: 'string'
+		},
+		video: {
+			type: 'string'
 		},
 		avatar: {
 			type: 'string'
-		},
-		background: {
-			type: 'string'
 		}
 	},
-	required: ['name', 'category', 'latitude', 'longitude']
+	required: ['name', 'category', 'lat', 'lng']
 };

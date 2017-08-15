@@ -1,8 +1,6 @@
 const ajv = require('ajv');
 const validateSchema = require('feathers-hooks-common').validateSchema;
-const schema = require('../../models/schemas/poi-category/poi-category');
-const populate = require('feathers-hooks-common').populate;
-const populateSchema = require('../../models/schemas/poi-category/poi-category-vm');
+const schema = require('../../models/schemas/poi-event/poi-event');
 
 module.exports = {
 	before: {
@@ -11,18 +9,14 @@ module.exports = {
 		get: [],
 		create: [validateSchema(schema, ajv)],
 		update: [validateSchema(schema, ajv)],
-		patch: [validateSchema(schema, ajv)],
+		patch: [],
 		remove: []
 	},
 
 	after: {
 		all: [],
-		find: [
-			populate({ schema: populateSchema })
-		],
-		get: [
-			populate({ schema: populateSchema })
-		],
+		find: [],
+		get: [],
 		create: [],
 		update: [],
 		patch: [],

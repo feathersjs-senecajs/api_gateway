@@ -1,8 +1,14 @@
 module.exports = {
 	include: {
-		service: 'points',
-		nameAs: 'points',
-		parentField: 'points',
-		childField: '_id'
+		asArray: true,
+		service: 'poi-event',
+		nameAs: 'poi_events',
+		select: (hook, parentItem) => {
+			parentItem.events.forEach(w => {
+				w.eventIds.forEach(e => {
+					return { _id: e };
+				});
+			});
+		}
 	}
 };
