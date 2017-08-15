@@ -5,6 +5,8 @@ const populate = require('feathers-hooks-common').populate;
 const populateSchema = require('../../models/schemas/itinerary/itinerary-vm');
 const groupEvents = require('../../hooks/group.events');
 
+const deleteEvents = require('../../hooks/delete-events');
+
 module.exports = {
 	before: {
 		all: [],
@@ -29,7 +31,7 @@ module.exports = {
 		create: [],
 		update: [],
 		patch: [],
-		remove: []
+		remove: [deleteEvents()]
 	},
 
 	error: {
