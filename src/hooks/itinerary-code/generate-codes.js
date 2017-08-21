@@ -22,6 +22,7 @@ module.exports = function (options = {}) {
 						});
 					});
 			}
+			seneca.close();//todo: check if need to close seneca 
 		});
 	};
 };
