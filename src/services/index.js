@@ -6,6 +6,8 @@ const poiType = require('./poi-type/poi-type.service.js');
 const poiEvent = require('./poi-event/poi-event.service.js');
 const itineraryCode = require('./itinerary-code/itinerary-code.service.js');
 const geoJson = require('./geo-json/geo-json.service.js');
+const pax = require('./pax/pax.service.js');
+const reservation = require('./reservation/reservation.service.js');
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(points);
@@ -16,4 +18,6 @@ module.exports = function () {
   app.configure(poiEvent);
   app.configure(itineraryCode);
   app.configure(geoJson);
+  app.configure(pax);
+  app.configure(reservation);
 };
