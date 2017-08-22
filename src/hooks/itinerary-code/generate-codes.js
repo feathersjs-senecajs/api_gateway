@@ -9,7 +9,7 @@ const seneca = require('seneca')()
 	});
 
 module.exports = function (options = {}) {
-	return function (hook) {
+	return async function (hook) {
 		let codesSvc = hook.service;
 		let items = await codesSvc.find({ $limit: 0 });
 
