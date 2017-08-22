@@ -16,8 +16,8 @@ module.exports = {
 
 	after: {
 		all: [],
-		find: [iff(isProvider('external'), generateCodes(), popCodes())],
-		get: [iff(isProvider('external'), generateCodes(), popCodes())],
+		find: [generateCodes(), popCodes()],
+		get: [],
 		create: [],
 		update: [],
 		patch: [],

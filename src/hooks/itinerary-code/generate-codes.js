@@ -10,19 +10,19 @@ const seneca = require('seneca')()
 
 module.exports = function (options = {}) {
 	return function (hook) {
-		seneca.act({ cmd: 'get', count: 3 }, async (err, msg) => {
-			let codesSvc = hook.app.service('itinerary-code');
-			let items = await codesSvc.find({ $limit: 0 });
+		let codesSvc = hook.service;
+		let items = await codesSvc.find({ $limit: 0 });
 
-			if (items.total < codeLimit) {
+		if (items.total < codeLimit) {
+			seneca.act({ cmd: 'get', count: codeLimit }, async (err, msg) => {
 				msg.codes.filter(c => c !== defaultCode)
 					.forEach((item, index) => {
 						codesSvc.create({
 							code: item
 						});
 					});
-			}
-			seneca.close();//todo: check if need to close seneca 
-		});
+				seneca.close();//todo: check if need to close seneca 
+			})
+		};
 	};
 };
