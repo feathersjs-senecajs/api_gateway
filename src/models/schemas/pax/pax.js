@@ -7,6 +7,9 @@ module.exports = {
 		lastName: {
 			type: 'string',
 			maxLength: 50
+		},
+		code: {
+			type: 'string'
 		}
 	},
 	required: ['name', 'lastName']
