@@ -8,6 +8,7 @@ const itineraryCode = require('./itinerary-code/itinerary-code.service.js');
 const geoJson = require('./geo-json/geo-json.service.js');
 const pax = require('./pax/pax.service.js');
 const reservation = require('./reservation/reservation.service.js');
+const reservationItineraryBind = require('./reservation-itinerary-bind/reservation-itinerary-bind.service.js');
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(points);
@@ -20,4 +21,5 @@ module.exports = function () {
   app.configure(geoJson);
   app.configure(pax);
   app.configure(reservation);
+  app.configure(reservationItineraryBind);
 };
