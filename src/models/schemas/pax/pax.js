@@ -8,9 +8,13 @@ module.exports = {
 			type: 'string',
 			maxLength: 50
 		},
+		email: {
+			type: 'string',
+			format: 'email'
+		},
 		code: {
 			type: 'string'
 		}
 	},
-	required: ['name', 'lastName']
+	required: ['name', 'lastName', 'email']
 };

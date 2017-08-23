@@ -1,10 +1,10 @@
 module.exports = {
 	include: {
 		asArray: true,
+		childField: '_id',
+		parentField: 'pax',
 		service: 'pax',
 		nameAs: 'pax',
-		select: (hook, parentItem) => {
-			parentItem.pax.forEach(p => { _id: p });
-		}
+		select: (hook, parentItem) => parentItem.pax ? ({ _id: { $in: parentItem.pax } }) : {}
 	}
 };
