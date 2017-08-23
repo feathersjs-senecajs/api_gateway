@@ -4,7 +4,8 @@ module.exports = {
 			type: 'string'
 		},
 		startDate: {
-			type: 'string'
+			type: 'string',
+			format: 'date-time'
 		},
 		pax: {
 			type: 'array',
