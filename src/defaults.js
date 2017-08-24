@@ -1,4 +1,25 @@
 module.exports = {
-	itineraryCode: '0A1222EF1',
-	codeLimit: 3
+	itineraryCodes: [
+		'0A1222EF1',
+		'0A1222EF2',
+		'0A1222EF3',
+		'0A1222EF4',
+		'0A1222EF5',
+		'0A1222EF6',
+		'0A1222EF7',
+		'0A1222EF8',
+		'0A1222EF9',
+		'0A1222EF0',
+		'1A1222EF1',
+		'2A1222EF2',
+		'3A1222EF3',
+		'4A1222EF4',
+		'5A1222EF5',
+		'6A1222EF6',
+		'7A1222EF7',
+		'8A1222EF8',
+		'9A1222EF9',
+		'0A1222EF0'
+	],
+	codeLimit: 2
 };
