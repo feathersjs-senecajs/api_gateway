@@ -14,13 +14,13 @@ class Service {
 		});
 	}
 
-	create(data, params) {
+	async create(data, params) {
 		let reservationSvc = this.app.service('reservation');
-		let reservation = reservationSvc.get(data.reservationId);
+		let reservation = await reservationSvc.get(data.reservationId);
 
 		reservation.itineraryId = data.itineraryId;
 		reservationSvc.update(reservation._id, reservation);
-		return Promise.resolve(data);
+		return Promise.resolve(data.reservationId);
 	}
 
 	update(id, data, params) {
