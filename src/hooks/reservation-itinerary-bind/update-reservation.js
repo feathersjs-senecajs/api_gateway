@@ -1,9 +1,13 @@
 module.exports = function () { 
-	return async function (hook) { 
+	return async function (hook) {
 		let reservationSvc = hook.app.service('reservation');
-		let reservation = await reservationSvc.get(hook.data.reservationId);
+		let reservation = hook.data.reservation;
 
-		reservation.itineraryId = hook.data.itineraryId;
-		reservationSvc.update(reservation._id, reservation);
+		reservationSvc.update(reservation._id, {
+			reservationCode: reservation.reservationCode,
+			startDate: reservation.startDate,
+			pax: reservation.pax.map(p => p._id),
+			itineraryId: hook.data.itineraryId
+		});
 	};
 };
