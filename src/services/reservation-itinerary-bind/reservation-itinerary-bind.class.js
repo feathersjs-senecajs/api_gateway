@@ -15,11 +15,6 @@ class Service {
 	}
 
 	async create(data, params) {
-		let reservationSvc = this.app.service('reservation');
-		let reservation = await reservationSvc.get(data.reservationId);
-
-		reservation.itineraryId = data.itineraryId;
-		reservationSvc.update(reservation._id, reservation);
 		return Promise.resolve(data.reservationId);
 	}
 
@@ -33,10 +28,6 @@ class Service {
 
 	remove(id, params) {
 		return Promise.resolve({ id });
-	}
-
-	setup(app, path) {
-		this.app = app;
 	}
 }
 

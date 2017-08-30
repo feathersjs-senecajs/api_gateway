@@ -4,8 +4,9 @@ module.exports = function () {
 		let paxList = await paxSvc.find();
 
 		paxList.data.forEach((item, index) => { 
-			item.code = hook.data.itineraryCodes[index];
+			item.code = hook.data.itineraryCodes[index].code;
 			paxSvc.update(item._id, item);
 		});
 	};
 };
+ 

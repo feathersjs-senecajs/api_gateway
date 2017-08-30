@@ -3,6 +3,7 @@ const validateSchema = require('feathers-hooks-common').validateSchema;
 const schema = require('../../models/schemas/reservation-itinerary-bind/reservation-itinerary-bind');
 const getCodes = require('../../hooks/reservation-itinerary-bind/get-codes');
 const assignCodes = require('../../hooks/reservation-itinerary-bind/assign-codes');
+const updateReservation = require('../../hooks/reservation-itinerary-bind/update-reservation');
 
 module.exports = {
 	before: {
@@ -12,7 +13,8 @@ module.exports = {
 		create: [
 			validateSchema(schema, ajv),
 			getCodes(),
-			assignCodes()
+			assignCodes(),
+			updateReservation()
 		],
 		update: [validateSchema(schema, ajv)],//todo: unreachable
 		patch: [validateSchema(schema, ajv)],//todo: unreachable

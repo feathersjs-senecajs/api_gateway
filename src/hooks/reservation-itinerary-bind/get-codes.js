@@ -6,6 +6,6 @@ module.exports = function () {
 		let itineraryCodesSvc = hook.app.service('itinerary-code');
 		let codes = await itineraryCodesSvc.find({ $limit: paxCount });
 
-		hook.data.itineraryCodes = codes;
+		hook.data.itineraryCodes = codes.data;
 	};
 };
