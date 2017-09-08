@@ -32,6 +32,7 @@
   },
   "dependencies": {
     "ajv": "^5.2.2",
+    "archiver": "^2.0.3",
     "body-parser": "^1.17.2",
     "compression": "^1.7.0",
     "cors": "^2.8.4",
