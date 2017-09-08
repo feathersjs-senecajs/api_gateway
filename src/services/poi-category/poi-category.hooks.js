@@ -17,12 +17,8 @@ module.exports = {
 
 	after: {
 		all: [],
-		find: [
-			populate({ schema: populateSchema })
-		],
-		get: [
-			populate({ schema: populateSchema })
-		],
+		find: [populate({ schema: populateSchema })],
+		get: [populate({ schema: populateSchema })],
 		create: [],
 		update: [],
 		patch: [],
