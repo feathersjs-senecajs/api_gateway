@@ -20,10 +20,7 @@ module.exports = {
 
 	after: {
 		all: [],
-		find: [
-			populate({ schema: populateSchema }),
-			groupEvents()
-		],
+		find: [],
 		get: [
 			populate({ schema: populateSchema }),
 			groupEvents()

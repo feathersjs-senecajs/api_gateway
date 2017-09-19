@@ -16,10 +16,14 @@ const middleware = require('./middleware');
 const services = require('./services');
 const appHooks = require('./app.hooks');
 
+const seeder = require('feathers-seeder');
+const seederConfig = require('./seeder-config');
+
 const app = feathers();
 
 // Load app configuration
 app.configure(configuration(path.join(__dirname, '..')));
+app.configure(seeder(seederConfig));
 // Enable CORS, security, compression, favicon and body parsing
 app.use(cors());
 app.use(helmet());
@@ -41,5 +45,7 @@ app.configure(services);
 // Configure middleware (see `middleware/index.js`) - always has to be last
 app.configure(middleware);
 app.hooks(appHooks);
+
+app.seed();
 
 module.exports = app;
