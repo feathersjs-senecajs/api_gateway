@@ -12,6 +12,7 @@ const reservationItineraryBind = require('./reservation-itinerary-bind/reservati
 const paxInfo = require('./pax-info/pax-info.service.js');
 const itineraryBundle = require('./itinerary-bundle/itinerary-bundle.service.js');
 const itineraryCodeBind = require('./itinerary-code-bind/itinerary-code-bind.service.js');
+const users = require('./users/users.service.js');
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(points);
@@ -28,4 +29,5 @@ module.exports = function () {
   app.configure(paxInfo);
   app.configure(itineraryBundle);
   app.configure(itineraryCodeBind);
+  app.configure(users);
 };

@@ -19,6 +19,8 @@ const appHooks = require('./app.hooks');
 const seeder = require('feathers-seeder');
 const seederConfig = require('./seeder-config');
 
+const authentication = require('./authentication');
+
 const app = feathers();
 
 // Load app configuration
@@ -39,6 +41,8 @@ app.configure(hooks());
 
 app.configure(socketio());
 app.configure(rest());
+
+app.configure(authentication);
 
 // Set up our services (see `services/index.js`)
 app.configure(services);
