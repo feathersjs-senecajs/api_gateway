@@ -7,9 +7,16 @@ const groupEvents = require('../../hooks/group.events');
 
 const deleteEvents = require('../../hooks/delete-events');
 
+const { authenticate } = require('feathers-authentication').hooks;
+const restrictToRoles = require('../role-filter');
+const roles = require('../../roles');
+
 module.exports = {
 	before: {
-		all: [],
+		all: [
+			authenticate('jwt'),
+			restrictToRoles([roles.ADMIN, roles.OP])
+		],
 		find: [],
 		get: [],
 		create: [validateSchema(schema, ajv)],
