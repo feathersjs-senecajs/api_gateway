@@ -3,16 +3,7 @@ const validateSchema = require('feathers-hooks-common').validateSchema;
 const schema = require('../../models/schemas/auth/user');
 const { authenticate } = require('feathers-authentication').hooks;
 const commonHooks = require('feathers-hooks-common');
-const { restrictToOwner } = require('feathers-authentication-hooks');
-
 const { hashPassword } = require('feathers-authentication-local').hooks;
-const restrict = [
-	authenticate('jwt'),
-	restrictToOwner({
-		idField: '_id',
-		ownerField: '_id'
-	})
-];
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 
@@ -24,7 +15,7 @@ module.exports = {
 			restrictToRoles([roles.ADMIN])
 		],
 		get: [
-			...restrict,
+			authenticate('jwt'),
 			restrictToRoles([roles.ADMIN, roles.OP])
 		],
 		create: [
@@ -33,17 +24,17 @@ module.exports = {
 			hashPassword()
 		],
 		update: [
-			...restrict,
+			authenticate('jwt'),
 			restrictToRoles([roles.ADMIN, roles.OP]),
 			hashPassword()
 		],
 		patch: [
-			...restrict,
+			authenticate('jwt'),
 			restrictToRoles([roles.ADMIN, roles.OP]),
 			hashPassword()
 		],
 		remove: [
-			...restrict,
+			authenticate('jwt'),
 			restrictToRoles([roles.ADMIN])
 		]
 	},
