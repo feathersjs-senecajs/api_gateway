@@ -28,18 +28,19 @@ module.exports = {
 			restrictToRoles([roles.ADMIN, roles.OP])
 		],
 		create: [
-			hashPassword(),
-			restrictToRoles([roles.ADMIN])
+			authenticate('jwt'),
+			restrictToRoles([roles.ADMIN]),
+			hashPassword()
 		],
 		update: [
 			...restrict,
-			hashPassword(),
-			restrictToRoles([roles.ADMIN, roles.OP])
+			restrictToRoles([roles.ADMIN, roles.OP]),
+			hashPassword()
 		],
 		patch: [
 			...restrict,
-			hashPassword(),
-			restrictToRoles([roles.ADMIN, roles.OP])
+			restrictToRoles([roles.ADMIN, roles.OP]),
+			hashPassword()
 		],
 		remove: [
 			...restrict,
