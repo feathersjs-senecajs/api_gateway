@@ -1,7 +1,3 @@
-const fileToURIParser = require('../../hooks/file.parser');
-const clearResponse = require('../../hooks/file.response');
-const logger = require('../../hooks/logger');
-
 const { authenticate } = require('feathers-authentication').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
@@ -10,12 +6,11 @@ module.exports = {
 	before: {
 		all: [
 			authenticate('jwt'),
-			restrictToRoles([roles.ADMIN, roles.OP]),
-			logger()
+			restrictToRoles([roles.ADMIN])
 		],
 		find: [],
 		get: [],
-		create: [fileToURIParser()],
+		create: [],
 		update: [],
 		patch: [],
 		remove: []
@@ -25,7 +20,7 @@ module.exports = {
 		all: [],
 		find: [],
 		get: [],
-		create: [clearResponse()],
+		create: [],
 		update: [],
 		patch: [],
 		remove: []

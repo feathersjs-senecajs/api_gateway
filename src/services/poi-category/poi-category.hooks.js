@@ -5,9 +5,16 @@ const populate = require('feathers-hooks-common').populate;
 const populateSchema = require('../../models/schemas/poi-category/poi-category-vm');
 const bundle = require('../../hooks/itinerary/bundle');
 
+const { authenticate } = require('feathers-authentication').hooks;
+const restrictToRoles = require('../role-filter');
+const roles = require('../../roles');
+
 module.exports = {
 	before: {
-		all: [],
+		all: [
+			authenticate('jwt'),
+			restrictToRoles([roles.ADMIN, roles.OP])
+		],
 		find: [],
 		get: [],
 		create: [validateSchema(schema, ajv)],
