@@ -14,6 +14,7 @@ const itineraryBundle = require('./itinerary-bundle/itinerary-bundle.service.js'
 const itineraryCodeBind = require('./itinerary-code-bind/itinerary-code-bind.service.js');
 const users = require('./users/users.service.js');
 const role = require('./role/role.service.js');
+const paxItineraryBind = require('./pax-itinerary-bind/pax-itinerary-bind.service.js');
 module.exports = function () {
   const app = this; // eslint-disable-line no-unused-vars
   app.configure(points);
@@ -32,4 +33,5 @@ module.exports = function () {
   app.configure(itineraryCodeBind);
   app.configure(users);
   app.configure(role);
+  app.configure(paxItineraryBind);
 };

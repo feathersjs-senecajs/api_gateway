@@ -1,8 +1,5 @@
-const ajv = require('ajv');
-const validateSchema = require('feathers-hooks-common').validateSchema;
-const schema = require('../../models/schemas/reservation/reservation');
 const populate = require('feathers-hooks-common').populate;
-const populateSchema = require('../../models/schemas/reservation/reservation-vm');
+const populateSchema = require('../../models/schemas/pax-itinerary-bind/pax-itinerary-bind-vm');
 
 const { authenticate } = require('feathers-authentication').hooks;
 const restrictToRoles = require('../role-filter');
@@ -20,16 +17,16 @@ module.exports = {
 		get: [
 			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])
 		],
-		create: [validateSchema(schema, ajv)],
-		update: [validateSchema(schema, ajv)],
-		patch: [validateSchema(schema, ajv)],
+		create: [],
+		update: [],
+		patch: [],
 		remove: []
 	},
 
 	after: {
 		all: [],
-		find: [],
-		get: [populate({ schema: populateSchema })],
+		find: [populate({ schema: populateSchema })],
+		get: [],
 		create: [],
 		update: [],
 		patch: [],

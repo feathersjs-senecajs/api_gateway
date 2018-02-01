@@ -12,8 +12,12 @@ module.exports = {
 			authenticate('jwt'),
 			restrictToRoles([roles.ADMIN, roles.OP])
 		],
-		find: [],
-		get: [],
+		find: [
+			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])
+		],
+		get: [
+			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])
+		],
 		create: [validateSchema(schema, ajv)],
 		update: [validateSchema(schema, ajv)],
 		patch: [validateSchema(schema, ajv)],
