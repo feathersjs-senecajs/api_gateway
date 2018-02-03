@@ -10,7 +10,9 @@ module.exports = function () {
 					points: Object.values(item).map((value) => new Object({
 						type: 'Feature',
 						properties: {
-							name: value.name
+							name: value.name,
+							typeName: value.poiType.name,
+							categoryName: value.poiCategory.name
 						},
 						geometry: {
 							type: 'Point',

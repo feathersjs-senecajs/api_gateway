@@ -3,9 +3,19 @@ const validateSchema = require('feathers-hooks-common').validateSchema;
 const schema = require('../../models/schemas/poi/poi');
 const geoJson = require('../../hooks/geojson');
 
+const populate = require('feathers-hooks-common').populate;
+const populateSchema = require('../../models/schemas/poi/poi-vm');
+
+const { authenticate } = require('feathers-authentication').hooks;
+const restrictToRoles = require('../role-filter');
+const roles = require('../../roles');
+
 module.exports = {
 	before: {
-		all: [],
+		all: [
+			authenticate('jwt'),
+			restrictToRoles([roles.ADMIN, roles.OP])
+		],
 		find: [],
 		get: [],
 		create: [validateSchema(schema, ajv)],
@@ -16,8 +26,14 @@ module.exports = {
 
 	after: {
 		all: [],
-		find: [geoJson()],
-		get: [geoJson()],
+		find: [
+			populate({ schema: populateSchema }),
+			geoJson()
+		],
+		get: [
+			populate({ schema: populateSchema }),
+			geoJson()
+		],
 		create: [],
 		update: [],
 		patch: [],
