@@ -14,6 +14,9 @@ module.exports = {
 		poiId: {
 			type: 'string'
 		},
+		poiName: {
+			type: 'string'
+		},
 		itinerary: {
 			type: 'string'
 		}

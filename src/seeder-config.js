@@ -22,7 +22,7 @@ const poiTypes = {
 };
 
 module.exports = {
-	delete: true,
+	delete: false,
 	services: [defaults.seedCode].concat(codeGenerator(defaults.seedCode, defaults.codeLimit))
 		.map(c => new Object({
 			path: 'itinerary-code',
@@ -35,7 +35,6 @@ module.exports = {
 				name: c
 			},
 			async callback(poiCat, seed) {
-				console.info(`This is my name ${poiCat.name} -- ${poiCat._id}`);
 				return poiTypes[poiCat.name].map(pT => seed({
 					path: 'poi-type',
 					template: {
