@@ -7,20 +7,17 @@ const roles = require('../../roles');
 
 module.exports = {
 	before: {
-		all: [
-			authenticate('jwt'),
-			restrictToRoles([roles.ADMIN, roles.OP])
-		],
+		all: [authenticate('jwt')],
 		find: [
 			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])
 		],
 		get: [
 			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])
 		],
-		create: [],
-		update: [],
-		patch: [],
-		remove: []
+		create: [restrictToRoles([roles.ADMIN, roles.OP])],
+		update: [restrictToRoles([roles.ADMIN, roles.OP])],
+		patch: [restrictToRoles([roles.ADMIN, roles.OP])],
+		remove: [restrictToRoles([roles.ADMIN, roles.OP])]
 	},
 
 	after: {

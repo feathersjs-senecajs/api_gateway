@@ -66,5 +66,13 @@ module.exports = {
 				roles: [roles.ADMIN, roles.OP],
 				fullName: 'Admin'
 			}
+		}, {
+			path: 'users',
+			template: {
+				email: 'gispiApp@gipsi.com',
+				password: 'UzI1NiIsInR5cCI6ImFjY2VzcyIsInR5cGUiOiJhY2Nlc3M',
+				roles: [roles.GIPSI],
+				fullName: 'GipsiApp'
+			}
 		}])
 };

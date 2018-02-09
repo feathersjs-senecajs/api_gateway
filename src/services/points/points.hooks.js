@@ -12,16 +12,22 @@ const roles = require('../../roles');
 
 module.exports = {
 	before: {
-		all: [
-			authenticate('jwt'),
-			restrictToRoles([roles.ADMIN, roles.OP])
+		all: [authenticate('jwt')],
+		find: [restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])],
+		get: [restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])],
+		create: [
+			restrictToRoles([roles.ADMIN, roles.OP]),
+			validateSchema(schema, ajv)
 		],
-		find: [],
-		get: [],
-		create: [validateSchema(schema, ajv)],
-		update: [validateSchema(schema, ajv)],
-		patch: [validateSchema(schema, ajv)],
-		remove: []
+		update: [
+			restrictToRoles([roles.ADMIN, roles.OP]),
+			validateSchema(schema, ajv)
+		],
+		patch: [
+			restrictToRoles([roles.ADMIN, roles.OP]),
+			validateSchema(schema, ajv)
+		],
+		remove: [restrictToRoles([roles.ADMIN, roles.OP])]
 	},
 
 	after: {
