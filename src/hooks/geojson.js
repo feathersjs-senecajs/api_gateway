@@ -12,7 +12,8 @@ module.exports = function () {
 						properties: {
 							name: value.name,
 							typeName: value.poiType.name,
-							categoryName: value.poiCategory.name
+							categoryName: value.poiCategory.name,
+							poiId: value._id
 						},
 						geometry: {
 							type: 'Point',
