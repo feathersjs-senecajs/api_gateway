@@ -14,7 +14,10 @@ module.exports = {
 
 	after: {
 		all: [],
-		find: [generateCodes(), popCodes()],
+		find: [
+			generateCodes(),
+			popCodes()
+		],
 		get: [],
 		create: [],
 		update: [],
