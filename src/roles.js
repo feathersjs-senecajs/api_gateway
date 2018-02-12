@@ -1,4 +1,5 @@
 module.exports = {
 	ADMIN: 'Administrator',
-	OP: 'Operator'
+	OP: 'Operator',
+	GIPSI: 'GipsiUser'
 };

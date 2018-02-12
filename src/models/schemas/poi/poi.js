@@ -7,6 +7,9 @@ module.exports = {
 		category: {
 			type: 'string'
 		},
+		type: {
+			type: 'string'
+		},
 		address: {
 			type: 'string',
 			maxLength: 100
