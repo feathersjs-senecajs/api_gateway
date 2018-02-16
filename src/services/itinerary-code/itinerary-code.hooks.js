@@ -1,4 +1,4 @@
-const generateCodes = require('../../hooks/itinerary-code/generate-codes');
+const requestCodes = require('../../hooks/itinerary-code/request.codes');
 const popCodes = require('../../hooks/itinerary-code/pop-code');
 
 module.exports = {
@@ -13,9 +13,10 @@ module.exports = {
 	},
 
 	after: {
-		all: [],
+		all: [
+			requestCodes()
+		],
 		find: [
-			generateCodes(),
 			popCodes()
 		],
 		get: [],
