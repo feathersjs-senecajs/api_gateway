@@ -4,6 +4,7 @@ const schema = require('../../models/schemas/poi-category/poi-category');
 const populate = require('feathers-hooks-common').populate;
 const populateSchema = require('../../models/schemas/poi-category/poi-category-vm');
 const bundle = require('../../hooks/itinerary/bundle');
+const createUri = require('../../hooks/shared/uri.creator');
 
 const { authenticate } = require('feathers-authentication').hooks;
 const restrictToRoles = require('../role-filter');
@@ -16,11 +17,13 @@ module.exports = {
 		get: [restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])],
 		create: [
 			restrictToRoles([roles.ADMIN, roles.OP]),
-			validateSchema(schema, ajv)
+			validateSchema(schema, ajv),
+			createUri()
 		],
 		update: [
 			restrictToRoles([roles.ADMIN, roles.OP]),
-			validateSchema(schema, ajv)
+			validateSchema(schema, ajv),
+			createUri()
 		],
 		patch: [
 			restrictToRoles([roles.ADMIN, roles.OP]),
