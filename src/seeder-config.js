@@ -1,6 +1,5 @@
 const defaults = require('./defaults');
 const roles = require('./roles');
-const codeGenerator = require('./utils/code-gen');
 
 const poiCategories = [
 	'Accommodation',
@@ -23,7 +22,7 @@ const poiTypes = {
 
 module.exports = {
 	delete: false,
-	services: [defaults.seedCode].concat(codeGenerator(defaults.seedCode, defaults.codeLimit))
+	services: [defaults.seedCode]
 		.map(c => new Object({
 			path: 'itinerary-code',
 			template: {

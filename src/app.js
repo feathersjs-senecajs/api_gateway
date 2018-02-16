@@ -21,6 +21,9 @@ const seederConfig = require('./seeder-config');
 
 const authentication = require('./authentication');
 
+const seneca = require('seneca')()
+	.use('seneca-amqp-transport');
+
 const app = feathers();
 
 // Load app configuration
@@ -35,6 +38,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get('public'), 'favicon.ico')));
 // Host the public folder
 app.use('/', feathers.static(app.get('public')));
+
+app.set('seneca', seneca);
 
 // Set up Plugins and providers
 app.configure(hooks());
