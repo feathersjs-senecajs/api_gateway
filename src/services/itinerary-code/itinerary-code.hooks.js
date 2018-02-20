@@ -13,9 +13,7 @@ module.exports = {
 	},
 
 	after: {
-		all: [
-			requestCodes()
-		],
+		all: [],
 		find: [
 			popCodes()
 		],
@@ -23,7 +21,9 @@ module.exports = {
 		create: [],
 		update: [],
 		patch: [],
-		remove: []
+		remove: [
+			requestCodes()
+		]
 	},
 
 	error: {

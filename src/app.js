@@ -25,6 +25,7 @@ const mongodb = require("./mongodb");
 
 const seneca = require('seneca')()
 	.use('seneca-amqp-transport');
+const senecaConfig = require('./seneca');
 
 const app = feathers();
 
@@ -57,8 +58,9 @@ const appPromise = mongodb(app).then(client => {
 	// Set up our services (see `services/index.js`)
 	app.configure(services);
 
-	// Configure middleware (see `middleware/index.js`) - always has to be last
+// Configure middleware (see `middleware/index.js`) - always has to be last
 	app.configure(middleware);
+	app.configure(senecaConfig);
 	app.hooks(appHooks);
 
 	app.seed();
