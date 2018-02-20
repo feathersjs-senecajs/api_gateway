@@ -1,7 +1,7 @@
 const defaults = require('../../defaults');
 const addConnOptsPin = require('../utils/add.conn.opt.pin');
 
-module.exports = function (options = {}) {
+module.exports = function () {
 	return async function requestCodes(hook) {
 		const seneca = hook.app.get('seneca')
 			.client(connOptions(defaults.rabbitmq));

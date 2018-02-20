@@ -23,6 +23,7 @@ const authentication = require('./authentication');
 
 const seneca = require('seneca')()
 	.use('seneca-amqp-transport');
+const senecaConfig = require('./seneca');
 
 const app = feathers();
 
@@ -53,6 +54,7 @@ app.configure(authentication);
 app.configure(services);
 // Configure middleware (see `middleware/index.js`) - always has to be last
 app.configure(middleware);
+app.configure(senecaConfig);
 app.hooks(appHooks);
 
 app.seed();
