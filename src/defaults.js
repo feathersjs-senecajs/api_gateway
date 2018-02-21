@@ -3,7 +3,7 @@ module.exports = {
 	rabbitmq: {
 		type: 'amqp',
 		url: 'amqp://localhost:5672',
-		pin: 'role:*'
+		pin: 'role:api'
 	},
 	geoJsonGroupByField: 'typeUri'
 };

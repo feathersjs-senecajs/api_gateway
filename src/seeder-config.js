@@ -21,6 +21,7 @@ const poiTypes = {
 };
 
 module.exports = {
+	disabled: true,
 	delete: false,
 	services: poiCategories.map(c => new Object({
 		path: 'poi-category',

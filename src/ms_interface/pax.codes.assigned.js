@@ -6,9 +6,9 @@ module.exports = function (app) {
 		const paxSvc = app.service('pax');
 		const paxItineraryBindSvc = app.service('pax-itinerary-bind');
 
-		msg.data.pax.forEach(p => {
-			paxSvc.patch(p._id, p);
-			paxItineraryBindSvc.create({
+		msg.data.pax.forEach(async p => {
+			await paxSvc.patch(p._id, p);
+			await paxItineraryBindSvc.create({
 				paxId: p._id,
 				paxCode: p.code,
 				itineraryId: msg.data.itineraryId,

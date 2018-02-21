@@ -1,6 +1,6 @@
 module.exports = {
-	paxCodesAssignRequest: 'role:reservation,cmd:assign_codes',
-	paxCodesAssignedResponse: 'role:reservation,cmd:assigned',
+	paxCodesAssignRequest: 'role:reservation,cmd:assignpaxcodes',
+	paxCodesAssignedResponse: 'role:api,cmd:setassignedcodes',
 	geojsonAddPoiRequest: 'role:geojson,cmd:add',
-	geojsonUpdateResponse: 'role:geojson,cmd:update'
+	geojsonUpdateResponse: 'role:api,cmd:addpoi'
 };
