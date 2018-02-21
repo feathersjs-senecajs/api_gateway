@@ -4,8 +4,13 @@ const defaults = require('../../defaults');
 
 module.exports = function () {
 	return async function updateGeoJson(hook) {
+		let conn = {
+			type: 'amqp',
+			pin: 'role:*',
+			url: defaults.rabbitmq.url
+		};
 		const senecaClient = hook.app.get('seneca')
-			.client(defaults.rabbitmq);
+			.client(conn);
 		const category = await hook.app.service('poi-category').get(hook.data.category);
 		const type = await hook.app.service('poi-type').get(hook.data.type);
 

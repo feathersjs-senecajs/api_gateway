@@ -10,6 +10,7 @@ const poiTypes = {
 };
 
 module.exports = {
+	disabled: true,
 	delete: false,
 	disabled: true,
 	services: poiCategories.map(c => new Object({

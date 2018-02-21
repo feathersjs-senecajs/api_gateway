@@ -9,6 +9,6 @@ module.exports = function senecaConfig() {
 	const seneca = app.get('seneca')
 		.listen(defaults.rabbitmq);
 	
-	seneca.add(msPatterns.geojsonUpdateResponse, updateGeoJsonState(app));
-	seneca.add(msPatterns.paxCodesAssignedResponse, paxCodesAssigned(app));
+	seneca.add('cmd:addpoi', updateGeoJsonState(app));
+	seneca.add('cmd:setassignedcodes', paxCodesAssigned(app));
 };
