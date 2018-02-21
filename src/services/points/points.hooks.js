@@ -2,6 +2,7 @@ const ajv = require('ajv');
 const validateSchema = require('feathers-hooks-common').validateSchema;
 const schema = require('../../models/schemas/poi/poi');
 const geoJson = require('../../hooks/geojson');
+const updateGeoJson = require('../../hooks/points/add.poi.to.geojson');
 
 const populate = require('feathers-hooks-common').populate;
 const populateSchema = require('../../models/schemas/poi/poi-vm');
@@ -40,7 +41,9 @@ module.exports = {
 			populate({ schema: populateSchema }),
 			geoJson()
 		],
-		create: [],
+		create: [
+			updateGeoJson()
+		],
 		update: [],
 		patch: [],
 		remove: []
