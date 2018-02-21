@@ -13,7 +13,9 @@ module.exports = function () {
 		hook.data.type = type;
 		msgManager.sendMessage(
 			senecaClient,
-			`${msPatterns.geojsonAddPoiRequest},poi:${JSON.stringify(buildPoiModel(hook.data))}`,
+			`${msPatterns.geojsonAddPoiRequest},
+			poi:${JSON.stringify(buildPoiModel(hook.data))},
+			groupBy:${defaults.geoJsonGroupByField}`,
 			`${msPatterns.geojsonUpdateResponse},data:`
 		).subscribe(console.log);
 	};
