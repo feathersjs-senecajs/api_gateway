@@ -14,7 +14,7 @@ module.exports = function () {
 	const options = {
 		Model,
 		paginate,
-		events: ['poiSet']
+		events: ['set']
 	};
 
 	// Initialize our service with any options it requires
