@@ -40,6 +40,12 @@ module.exports = {
 		},
 		avatar: {
 			type: 'string'
+		},
+		_class: {
+			type: 'string'
+		},
+		_set: {
+			type: 'boolean'
 		}
 	},
 	required: ['name', 'category', 'lat', 'lng']

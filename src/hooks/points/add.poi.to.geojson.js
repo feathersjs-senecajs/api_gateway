@@ -16,6 +16,7 @@ module.exports = function () {
 
 		hook.data.category = category;
 		hook.data.type = type;
+		hook.data._id = hook.result._id;
 		msgManager.sendMessage(
 			senecaClient,
 			`${msPatterns.geojsonAddPoiRequest},
@@ -35,6 +36,7 @@ function buildPoiModel(poi) {
 		typeName: poi.type.name,
 		typeUri: poi.type.uri,
 		id: poi._id,
-		name: poi.name
+		name: poi.name,
+		class: poi._class
 	};
 }

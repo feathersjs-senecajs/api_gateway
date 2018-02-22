@@ -3,6 +3,7 @@ const validateSchema = require('feathers-hooks-common').validateSchema;
 const schema = require('../../models/schemas/poi/poi');
 const geoJson = require('../../hooks/geojson');
 const updateGeoJson = require('../../hooks/points/add.poi.to.geojson');
+const initializePoi = require('../../hooks/points/initialize.poi');
 
 const populate = require('feathers-hooks-common').populate;
 const populateSchema = require('../../models/schemas/poi/poi-vm');
@@ -18,15 +19,15 @@ module.exports = {
 		get: [restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])],
 		create: [
 			restrictToRoles([roles.ADMIN, roles.OP]),
-			validateSchema(schema, ajv)
+			validateSchema(schema, ajv),
+			initializePoi()
 		],
 		update: [
 			restrictToRoles([roles.ADMIN, roles.OP]),
 			validateSchema(schema, ajv)
 		],
 		patch: [
-			restrictToRoles([roles.ADMIN, roles.OP]),
-			validateSchema(schema, ajv)
+			restrictToRoles([roles.ADMIN, roles.OP])
 		],
 		remove: [restrictToRoles([roles.ADMIN, roles.OP])]
 	},
