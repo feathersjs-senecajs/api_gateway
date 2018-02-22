@@ -6,29 +6,30 @@ module.exports = function (app) {
 		const poiSvc = app.service('points');
 		const msg = msgManager.receiveMessage(msMsg);
 		const geoJsonList = await geoJsonSvc.find({
-				query: { type: msg.data.result.type }
+				query: { type: msg.data.type }
 			})
 			.then(res => res.data);
 		let currentItem = geoJsonList.length > 0 ? geoJsonList[0] : null;
 
 		if (currentItem) {
 			geoJsonSvc.patch(currentItem._id, {
-				geojson: msg.data.result.geojson
+				geojson: msg.data.geojson
 			});
 		}
 		else {
-			geoJsonSvc.create(msg.data.result);
+			geoJsonSvc.create(msg.data);
 		}
-		setPoi(msg.data.input, poiSvc);
-		reply(null, { msg: 'ok' });
+		setPoi(msg.input.id, poiSvc);
+		reply();
 	};
 
 	async function setPoi(poiId, poiSvc) {
 		poiSvc.patch(poiId, {
 			_set: true
-		});
-		poiSvc.emit('poiSet', {
-			data: poiId
+		}).then(() => {
+			poiSvc.emit('poiSet', {
+				data: poiId
+			});
 		});
 	}
 };
