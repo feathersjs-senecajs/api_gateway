@@ -5,5 +5,5 @@ module.exports = {
 		url: 'amqp://localhost:5672',
 		pin: 'role:api'
 	},
-	geoJsonGroupByField: 'typeUri'
+	geoJsonGroupByField: 'class'
 };
