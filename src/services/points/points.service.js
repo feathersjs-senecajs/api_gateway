@@ -13,7 +13,8 @@ module.exports = function () {
 	const Model = mongoClient.db('gipsi').collection('points');
 	const options = {
 		Model,
-		paginate
+		paginate,
+		events: ['poiSet']
 	};
 
 	// Initialize our service with any options it requires

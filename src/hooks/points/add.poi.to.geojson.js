@@ -19,11 +19,12 @@ module.exports = function () {
 		hook.data._id = hook.result._id;
 		msgManager.sendMessage(
 			senecaClient,
-			`${msPatterns.geojsonAddPoiRequest},
-			poi:${JSON.stringify(buildPoiModel(hook.data))},
-			groupBy:${defaults.geoJsonGroupByField}`,
+			msPatterns.geojsonAddPoiRequest, {
+				poi: buildPoiModel(hook.data),
+				groupBy: defaults.geoJsonGroupByField
+			},
 			`${msPatterns.geojsonUpdateResponse},data:`
-		).subscribe(console.log);
+		);
 	};
 };
 
