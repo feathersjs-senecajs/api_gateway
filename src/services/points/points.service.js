@@ -13,7 +13,7 @@ module.exports = function () {
 		name: 'points',
 		Model,
 		paginate,
-		events: ['poiSet']
+		events: ['set']
 	};
 
 	// Initialize our service with any options it requires

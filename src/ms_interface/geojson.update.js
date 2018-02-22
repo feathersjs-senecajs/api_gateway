@@ -27,7 +27,7 @@ module.exports = function (app) {
 		poiSvc.patch(poiId, {
 			_set: true
 		}).then(() => {
-			poiSvc.emit('poiSet', {
+			poiSvc.emit('set', {
 				data: poiId
 			});
 		});
