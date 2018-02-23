@@ -26,10 +26,9 @@ module.exports = function (app) {
 	async function setPoi(poiId, poiSvc) {
 		poiSvc.patch(poiId, {
 			_set: true
-		}).then(() => {
-			poiSvc.emit('set', {
-				data: poiId
-			});
+		});
+		poiSvc.emit('set', {
+			data: poiId
 		});
 	}
 };
