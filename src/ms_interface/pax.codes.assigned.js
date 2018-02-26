@@ -18,7 +18,7 @@ module.exports = function (app) {
 			});
 		}
 		reservationSvc.emit('bound', {
-			data: reservation._id
+			data: reservation
 		});
 		reply();
 	};
