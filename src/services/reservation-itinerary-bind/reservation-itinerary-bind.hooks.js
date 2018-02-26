@@ -22,8 +22,7 @@ module.exports = {
 		get: [],
 		create: [
 			validateSchema(schema, ajv),
-			updateReservation(),
-			requestPaxBind()
+			updateReservation()
 		],
 		update: [validateSchema(schema, ajv)],//todo: unreachable
 		patch: [validateSchema(schema, ajv)],//todo: unreachable
@@ -34,7 +33,9 @@ module.exports = {
 		all: [],
 		find: [],
 		get: [],
-		create: [],
+		create: [
+			requestPaxBind()
+		],
 		update: [],
 		patch: [],
 		remove: []

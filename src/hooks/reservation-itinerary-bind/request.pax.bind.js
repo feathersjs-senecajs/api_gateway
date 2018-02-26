@@ -6,19 +6,30 @@ const pinBuilder = require('../../pin.builder');
 const replyPattern = `${msPatterns.paxCodesAssignedResponse},data:`;
 
 module.exports = function () {
-	return function requestPaxBind(hook) {
+	return async function requestPaxBind(hook) {
+		const paxSvc = hook.app.service('pax');
 		const senecaClient = hook.app.get('seneca')
-			.client({
-				type: 'amqp',
-				pin: 'role:*',
-				url: defaults.rabbitmq.url
-			});
+			.client(defaults.rabbitmqClient);
+		const paxIdList = hook.data.updatedReservation.pax;
 		
+		hook.data.updatedReservation.pax = await getPax(paxSvc, paxIdList);
 		msgManager.sendMessage(
 			senecaClient,
-			`${msPatterns.paxCodesAssignRequest},
-			data:${JSON.stringify(hook.data.updatedReservation)}`,
+			msPatterns.paxCodesAssignRequest, {
+				data: hook.data.updatedReservation,
+				input: 'data'
+			},
 			replyPattern
-		).subscribe(console.log);
+		);
 	};
+
+	function getPax(paxSvc, paxIdList) {
+		return paxSvc.find({
+			query: {
+				_id: {
+					$in: paxIdList
+				}
+			}
+		}).then(res => res.data);
+	}
 };
