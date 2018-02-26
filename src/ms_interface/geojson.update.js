@@ -5,6 +5,7 @@ module.exports = function (app) {
 		const geoJsonSvc = app.service('geo-json');
 		const poiSvc = app.service('points');
 		const msg = msgManager.receiveMessage(msMsg);
+		console.log(msg.data);
 		const geoJsonList = await geoJsonSvc.find({
 				query: { type: msg.data.type }
 			})
@@ -13,7 +14,7 @@ module.exports = function (app) {
 
 		if (currentItem) {
 			geoJsonSvc.patch(currentItem._id, {
-				geojson: msg.data.geojson
+				geojson: msg.data.geoJson
 			});
 		}
 		else {
