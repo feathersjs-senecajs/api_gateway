@@ -13,7 +13,8 @@ module.exports = function() {
 	const Model = mongoClient.db("gipsi").collection("reservation");
 	const options = {
 		Model,
-		paginate
+		paginate,
+		events: ['bound']
 	};
 
 	// Initialize our service with any options it requires
@@ -23,7 +24,7 @@ module.exports = function() {
 	const service = app.service("reservation");
 
 	service.hooks(hooks);
-
+	
 	if (service.filter) {
 		service.filter(filters);
 	}
