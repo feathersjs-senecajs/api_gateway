@@ -16,7 +16,8 @@ module.exports = function () {
 			senecaClient,
 			msPatterns.geojsonAddPoiRequest, {
 				poi: buildPoiModel(hook.data),
-				groupBy: defaults.geoJsonGroupByField
+				groupBy: defaults.geoJsonGroupByField,
+				input: 'poi'
 			},
 			`${msPatterns.geojsonUpdateResponse},data:`
 		);
