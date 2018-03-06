@@ -10,7 +10,7 @@ module.exports = {
 	before: {
 		all: [
 			authenticate('jwt'),
-			restrictToRoles([roles.ADMIN, roles.OP]),
+			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI]),
 			logger()
 		],
 		find: [],
