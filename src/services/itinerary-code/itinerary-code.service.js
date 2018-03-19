@@ -20,7 +20,7 @@ module.exports = function () {
 
 	mongoClient.then(client => {
 		service.Model = client.db('gipsi').collection('itinerary_code');
-	})
+	});
 
 	service.hooks(hooks);
 

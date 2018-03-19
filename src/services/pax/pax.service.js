@@ -21,7 +21,7 @@ module.exports = function () {
 
 	mongoClient.then(client => {
 		service.Model = client.db('gipsi').collection('pax');
-	})
+	});
 	service.hooks(hooks);
 
 	if (service.filter) {

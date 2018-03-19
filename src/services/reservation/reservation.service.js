@@ -22,7 +22,7 @@ module.exports = function () {
 
 	mongoClient.then(client => {
 		service.Model = client.db('gipsi').collection('reservation');
-	})
+	});
 
   service.hooks(hooks);
 

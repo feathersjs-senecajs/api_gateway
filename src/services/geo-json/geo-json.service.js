@@ -1,29 +1,30 @@
 // Initializes the `geoJSON` service on path `/geo-json`
-const createService = require('feathers-nedb');
+// const createService = require('feathers-nedb');
 const createModel = require('../../models/geo-json.model');
 const hooks = require('./geo-json.hooks');
 const filters = require('./geo-json.filters');
+const createService = require('feathers-mongodb');
 
 module.exports = function () {
-  const app = this;
-  const Model = createModel(app);
-  const paginate = app.get('paginate');
+	const app = this;
+	//const Model = createModel(app);
+	const paginate = app.get('paginate');
+	const mongoClient = app.get('mongoClient');
+	const options = { paginate };
 
-  const options = {
-    name: 'geo-json',
-    Model,
-    paginate
-  };
+	// Initialize our service with any options it requires
+	app.use('/geo-json', createService(options));
 
-  // Initialize our service with any options it requires
-  app.use('/geo-json', createService(options));
+	// Get our initialized service so that we can register hooks and filters
+	const service = app.service('geo-json');
 
-  // Get our initialized service so that we can register hooks and filters
-  const service = app.service('geo-json');
 
-  service.hooks(hooks);
+	mongoClient.then(client => {
+		service.Model = client.db('gipsi').collection('geo_json');
+	});
+	service.hooks(hooks);
 
-  if (service.filter) {
-    service.filter(filters);
-  }
+	if (service.filter) {
+		service.filter(filters);
+	}
 };

@@ -7,7 +7,7 @@ const createService = require('feathers-mongodb');
 
 module.exports = function () {
 	const app = this;
-	const Model = createModel(app);
+	//const Model = createModel(app);
 	const paginate = app.get('paginate');
 	const mongoClient = app.get('mongoClient')
 	const options = {
@@ -22,7 +22,7 @@ module.exports = function () {
 
 	mongoClient.then(client => {
 		service.Model = client.db('gipsi').collection('points');
-	})
+	});
 
 	service.hooks(hooks);
 
