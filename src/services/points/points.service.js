@@ -1,17 +1,16 @@
 // Initializes the `points` service on path `/points`
-const createService = require('feathers-nedb');
+// const createService = require('feathers-nedb');
 const createModel = require('../../models/points.model');
 const hooks = require('./points.hooks');
 const filters = require('./points.filters');
+const createService = require('feathers-mongodb');
 
 module.exports = function () {
 	const app = this;
 	const Model = createModel(app);
 	const paginate = app.get('paginate');
-
+	const mongoClient = app.get('mongoClient')
 	const options = {
-		name: 'points',
-		Model,
 		paginate
 	};
 
@@ -20,6 +19,10 @@ module.exports = function () {
 
 	// Get our initialized service so that we can register hooks and filters
 	const service = app.service('points');
+
+	mongoClient.then(client => {
+		service.Model = client.db('gipsi').collection('points');
+	})
 
 	service.hooks(hooks);
 
