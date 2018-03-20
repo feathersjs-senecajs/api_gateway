@@ -47,10 +47,10 @@ app.configure(rest());
 const appPromise = mongodb(app).then(client => {
 	app.set('mongoClient', client);
 
+	app.configure(authentication);
+
 	// Set up our services (see `services/index.js`)
 	app.configure(services);
-
-	app.configure(authentication);
 
 	// Configure middleware (see `middleware/index.js`) - always has to be last
 	app.configure(middleware);
