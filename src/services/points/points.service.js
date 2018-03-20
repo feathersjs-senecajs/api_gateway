@@ -10,7 +10,9 @@ module.exports = function () {
 	//const Model = createModel(app);
 	const paginate = app.get('paginate');
 	const mongoClient = app.get('mongoClient')
+	const Model = mongoClient.db('gipsi').collection('points');
 	const options = {
+		Model,
 		paginate
 	};
 
@@ -19,10 +21,6 @@ module.exports = function () {
 
 	// Get our initialized service so that we can register hooks and filters
 	const service = app.service('points');
-
-	mongoClient.then(client => {
-		service.Model = client.db('gipsi').collection('points');
-	});
 
 	service.hooks(hooks);
 

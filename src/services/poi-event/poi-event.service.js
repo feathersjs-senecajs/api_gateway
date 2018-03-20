@@ -42,7 +42,11 @@ module.exports = function () {
 	// const Model = createModel(app);
 	const paginate = app.get('paginate');
 	const mongoClient = app.get('mongoClient');
-	const options = { paginate };
+	const Model = mongoClient.db('gipsi').collection('poi_events');
+	const options = {
+		Model,
+		paginate
+	};
 
 	//   const options = {
 	//     name: 'poi-event',
@@ -55,10 +59,6 @@ module.exports = function () {
 
 	// Get our initialized service so that we can register hooks and filters
 	const service = app.service('poi-event');
-
-	mongoClient.then(client => {
-		service.Model = client.db('gipsi').collection('poi_events');
-	});
 
 	service.hooks(hooks);
 

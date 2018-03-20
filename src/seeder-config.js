@@ -20,16 +20,24 @@ const poiTypes = {
 		'Clases de Salsa'
 	]
 };
+const codes = [
+	'111111112',
+	'222333444',
+	'112332444',
+	'222111333'
+];
 
 module.exports = {
 	delete: false,
-	services: [defaults.seedCode].concat(codeGenerator(defaults.seedCode, defaults.codeLimit))
-		.map(c => new Object({
-			path: 'itinerary-code',
-			template: {
-				code: c
-			}
-		})).concat(poiCategories.map(c => new Object({
+	services: [defaults.seedCode].concat(codes)
+		.map(c => {
+			return {
+				path: 'itinerary-code',
+				template: {
+					code: c
+				}
+			};
+		}).concat(poiCategories.map(c => new Object({
 			path: 'poi-category',
 			template: {
 				name: c
@@ -39,7 +47,7 @@ module.exports = {
 					path: 'poi-type',
 					template: {
 						name: pT,
-						category: poiCat._id
+						category: `ObjectId(${poiCat._id.toString()})`
 					}
 				}));
 			}

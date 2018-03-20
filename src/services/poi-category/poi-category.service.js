@@ -1,16 +1,16 @@
 // Initializes the `POICategory` service on path `/poi-category`
-const createService = require('feathers-nedb');
+const createService = require('feathers-mongodb');
 const createModel = require('../../models/poi-category.model');
 const hooks = require('./poi-category.hooks');
 const filters = require('./poi-category.filters');
 
 module.exports = function () {
 	const app = this;
-	const Model = createModel(app);
 	const paginate = app.get('paginate');
+	const mongoClient = app.get('mongoClient');
+	const Model = mongoClient.db('gipsi').collection('poi_category');
 
 	const options = {
-		name: 'poi-category',
 		Model,
 		paginate
 	};

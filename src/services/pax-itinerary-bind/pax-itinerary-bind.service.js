@@ -10,7 +10,11 @@ module.exports = function () {
 	//const Model = createModel(app);
 	const paginate = app.get('paginate');
 	const mongoClient = app.get('mongoClient');
-	const options = { paginate };
+	const Model = mongoClient.db('gipsi').collection('pax_itinerary_bind');
+	const options = {
+		Model,
+		paginate
+	};
 
 	// Initialize our service with any options it requires
 	app.use('/pax-itinerary-bind', createService(options));
@@ -18,9 +22,6 @@ module.exports = function () {
 	// Get our initialized service so that we can register hooks and filters
 	const service = app.service('pax-itinerary-bind');
 
-	mongoClient.then(client => {
-		service.Model = client.db('gipsi').collection('pax_itinerary_bind');
-	});
 	service.hooks(hooks);
 
 	if (service.filter) {

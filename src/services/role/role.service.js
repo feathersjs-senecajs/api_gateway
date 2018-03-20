@@ -9,8 +9,10 @@ module.exports = function () {
 	const app = this;
 	//const Model = createModel(app);
 	const paginate = app.get('paginate');
-	const mongoClient = app.get('mongoClient')
+	const mongoClient = app.get('mongoClient');
+	const Model = mongoClient.db('gipsi').collection('role');
 	const options = {
+		Model,
 		paginate
 	};
 
@@ -19,9 +21,9 @@ module.exports = function () {
 
 	// Get our initialized service so that we can register hooks and filters
 	const service = app.service('role');
-	mongoClient.then(client => {
-		service.Model = client.db('gipsi').collection('role');
-	});
+	// mongoClient.then(client => {
+	// 	service.Model = client.db('gipsi').collection('role');
+	// });
 	service.hooks(hooks);
 
 	if (service.filter) {
