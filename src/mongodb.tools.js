@@ -1,5 +1,5 @@
 function buildObjectId(objectId) {
-	return `ObjectId("${objectId.toString()}")`;
+	return ObjectIdFormat(objectId.toString());
 }
 
 function setObjectIdHook(options = {}) {
@@ -8,20 +8,30 @@ function setObjectIdHook(options = {}) {
 			return;
 		}
 		const query = hook.params.query;
-		const idFields = options.idFields || [];
+		const idFields = options.idFields || {};
 	
-		for (const f of idFields) {
+		for (const f of Object.keys(idFields)) {
 			if (query[f]) {
-				query[f] = `ObjectId("${query[f].toString()}")`;
+				if (idFields[f].isArray) {
+					query[f] = query[f].map(id => ObjectIdFormat(id));
+				}
+				else {
+					query[f] = ObjectIdFormat(query[f].toString());
+				}
 			}
 		}
 		hook.params.query = query;
 	};
 }
 
+function ObjectIdFormat(id) {
+	return `Object("${id}")`;
+}
+
 module.exports = {
 	createId: buildObjectId,
 	hooks: {
 		normalizeIds: setObjectIdHook
-	}
+	},
+	idFormatter: ObjectIdFormat
 };

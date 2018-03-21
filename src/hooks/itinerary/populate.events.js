@@ -1,17 +1,17 @@
+const ObjectId = require('mongodb').ObjectId;
+
 module.exports = function () { 
-	return function populateEvents(hook) { 
+	return async function populateEvents(hook) { 
 		const poiEventSvc = hook.app.service('poi-event');
-		const events = hook.result.events.map(async e => { 
+
+		for (const e of hook.result.events) {
 			e.eventIds = await poiEventSvc.find({
 				query: {
 					_id: {
-						$in: e.eventIds
+						$in: e.eventIds.map(id => ObjectId(id))
 					}
 				}
-			});
-			return e;
-		});
-
-		hook.result.events = events;
+			}).then(res => res.data);
+		}
 	};
 };

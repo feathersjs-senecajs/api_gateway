@@ -13,7 +13,7 @@ module.exports = {
 		all: [authenticate("jwt")],
 		find: [
 			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI]),
-			normalizeIds({ idFields: ["category"] })
+			normalizeIds({ idFields: { category: {} } })
 		],
 		get: [restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])],
 		create: [
