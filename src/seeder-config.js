@@ -1,6 +1,7 @@
 const defaults = require('./defaults');
 const roles = require('./roles');
 const codeGenerator = require('./utils/code-gen');
+const buildObjectId = require('./mongodb.tools').createId;
 
 const poiCategories = [
 	'Accommodation',
@@ -29,6 +30,7 @@ const codes = [
 
 module.exports = {
 	delete: false,
+	disabled: false,
 	services: [defaults.seedCode].concat(codes)
 		.map(c => {
 			return {
@@ -47,7 +49,7 @@ module.exports = {
 					path: 'poi-type',
 					template: {
 						name: pT,
-						category: `ObjectId(${poiCat._id.toString()})`
+						category: buildObjectId(poiCat._id)
 					}
 				}));
 			}

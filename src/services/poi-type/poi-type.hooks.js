@@ -1,15 +1,20 @@
-const ajv = require('ajv');
-const validateSchema = require('feathers-hooks-common').validateSchema;
-const schema = require('../../models/schemas/poi-type/poi-type');
+const ajv = require("ajv");
+const validateSchema = require("feathers-hooks-common").validateSchema;
+const schema = require("../../models/schemas/poi-type/poi-type");
 
-const { authenticate } = require('feathers-authentication').hooks;
-const restrictToRoles = require('../role-filter');
-const roles = require('../../roles');
+const { authenticate } = require("feathers-authentication").hooks;
+const restrictToRoles = require("../role-filter");
+const roles = require("../../roles");
+
+const normalizeIds = require("../../mongodb.tools").hooks.normalizeIds;
 
 module.exports = {
 	before: {
-		all: [authenticate('jwt')],
-		find: [restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])],
+		all: [authenticate("jwt")],
+		find: [
+			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI]),
+			normalizeIds({ idFields: ["category"] })
+		],
 		get: [restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])],
 		create: [
 			restrictToRoles([roles.ADMIN, roles.OP]),
