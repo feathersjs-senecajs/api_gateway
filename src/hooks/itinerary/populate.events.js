@@ -11,5 +11,7 @@ module.exports = function () {
 			});
 			return e;
 		});
+
+		hook.result.events = events;
 	};
 };
