@@ -35,7 +35,9 @@ module.exports = {
 	after: {
 		all: [],
 		find: [],
-		get: [populate({ schema: populateSchema })],
+		get: [
+			populate({ schema: populateSchema })
+		],
 		create: [],
 		update: [],
 		patch: [],

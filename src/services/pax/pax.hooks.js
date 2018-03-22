@@ -1,16 +1,20 @@
 const ajv = require('ajv');
 const validateSchema = require('feathers-hooks-common').validateSchema;
+const mongoKeys = require('feathers-hooks-common').mongoKeys;
 const schema = require('../../models/schemas/pax/pax');
 
 const { authenticate } = require('feathers-authentication').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 
+const ObjectID = require('mongodb').ObjectID;
+
 module.exports = {
 	before: {
 		all: [authenticate('jwt')],
 		find: [
-			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])
+			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI]),
+			mongoKeys(ObjectID, ['_id'])
 		],
 		get: [
 			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])
