@@ -39,7 +39,9 @@ module.exports = {
 	after: {
 		all: [],
 		find: [],
-		get: [],
+		get: [
+			populateEvents()
+		],
 		create: [],
 		update: [],
 		patch: [],
