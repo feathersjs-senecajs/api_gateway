@@ -13,7 +13,7 @@ module.exports = function () {
 					}
 				}
 			}).then(res => res.data);
-			result = [..., result, e.eventIds];
+			result = [...result, e.eventIds];
 		}
 		hook.result.events = result;
 	};
