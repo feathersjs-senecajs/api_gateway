@@ -9,7 +9,8 @@ const roles = require('../../roles');
 
 module.exports = {
 	before: {
-		all: [],
+		all: [authenticate('jwt'),
+		restrictToRoles([roles.ADMIN, roles.OP])],
 		find: [
 			authenticate('jwt'),
 			restrictToRoles([roles.ADMIN])
