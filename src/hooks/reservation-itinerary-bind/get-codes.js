@@ -5,6 +5,13 @@ module.exports = function () {
 		let paxCount = reservation.pax.length;
 		let itineraryCodesSvc = hook.app.service('itinerary-code');
 		let codes = await itineraryCodesSvc.find({ $limit: paxCount });
+		let aux = await itineraryCodesSvc.remove(null, {
+			query: {
+				code: {
+					$in: codes
+				}
+			}
+		});
 
 		hook.data.itineraryCodes = codes.data;
 		hook.data.reservation = reservation;
