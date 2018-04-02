@@ -4,16 +4,17 @@ module.exports = function () {
 		let reservation = await reservationSvc.get(hook.data.reservationId);
 		let paxCount = reservation.pax.length;
 		let itineraryCodesSvc = hook.app.service('itinerary-code');
-		let codes = await itineraryCodesSvc.find({ $limit: paxCount });
+		let codes = await itineraryCodesSvc.find({ $limit: paxCount })
+			.then(res => res.data);
 		let aux = await itineraryCodesSvc.remove(null, {
 			query: {
 				code: {
-					$in: codes
+					$in: codes.map(c => c.code)
 				}
 			}
 		});
 
-		hook.data.itineraryCodes = codes.data;
+		hook.data.itineraryCodes = codes;
 		hook.data.reservation = reservation;
 	};
 };
