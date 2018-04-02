@@ -7,7 +7,7 @@ module.exports = function() {
 	const app = this;
 	const paginate = app.get("paginate");
 	const mongoClient = app.get('mongoClient');
-	const Model = mongoClient.db('gipsi').collection('itinerary');
+	const Model = mongoClient.db('gipsi').collection('reservation_itinerary_bind');
 	const options = {
 		Model,
 		paginate
