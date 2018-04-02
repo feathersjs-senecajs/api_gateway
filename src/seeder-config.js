@@ -21,16 +21,11 @@ const poiTypes = {
 		'Clases de Salsa'
 	]
 };
-const codes = [
-	'111111112',
-	'222333444',
-	'112332444',
-	'222111333'
-];
+const codes = codeGenerator('111111111', 5000);
 
 module.exports = {
 	delete: false,
-	disabled: false,
+	disabled: true,
 	services: [defaults.seedCode].concat(codes)
 		.map(c => {
 			return {

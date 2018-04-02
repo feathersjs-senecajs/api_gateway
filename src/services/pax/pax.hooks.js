@@ -1,6 +1,6 @@
 const ajv = require('ajv');
 const validateSchema = require('feathers-hooks-common').validateSchema;
-const mongoKeys = require('feathers-hooks-common').mongoKeys;
+const { mongoKeys, iff, isProvider } = require('feathers-hooks-common');
 const schema = require('../../models/schemas/pax/pax');
 
 const { authenticate } = require('feathers-authentication').hooks;

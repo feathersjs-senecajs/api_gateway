@@ -3,9 +3,7 @@ module.exports = function () {
 		let reservationSvc = hook.app.service('reservation');
 		let reservation = hook.data.reservation;
 
-		reservationSvc.update(reservation._id, {
-			reservationCode: reservation.reservationCode,
-			startDate: reservation.startDate,
+		reservationSvc.patch(reservation._id, {
 			pax: reservation.pax.map(p => p._id),
 			itineraryId: hook.data.itineraryId
 		});

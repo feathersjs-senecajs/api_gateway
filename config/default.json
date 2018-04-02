@@ -32,5 +32,5 @@
       "passwordField": "password"
     }
   },
-  "mongodb": "mongodb://localhost:27017/gipsi"
+  "mongodb": "mongodb://192.168.20.182:27017/gipsi"
 }

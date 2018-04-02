@@ -26,8 +26,7 @@ module.exports = {
 			validateSchema(schema, ajv)
 		],
 		patch: [
-			restrictToRoles([roles.ADMIN, roles.OP]),
-			validateSchema(schema, ajv)
+			restrictToRoles([roles.ADMIN, roles.OP])
 		],
 		remove: [restrictToRoles([roles.ADMIN, roles.OP])]
 	},
