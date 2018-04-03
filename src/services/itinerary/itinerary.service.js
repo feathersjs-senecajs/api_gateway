@@ -1,16 +1,17 @@
 // Initializes the `itinerary` service on path `/itinerary`
-const createService = require('feathers-nedb');
+// const createService = require('feathers-nedb');
 const createModel = require('../../models/itinerary.model');
 const hooks = require('./itinerary.hooks');
 const filters = require('./itinerary.filters');
+const createService = require('feathers-mongodb');
 
 module.exports = function () {
 	const app = this;
-	const Model = createModel(app);
+	// const Model = createModel(app);
 	const paginate = app.get('paginate');
-
+	const mongoClient = app.get('mongoClient');
+	const Model = mongoClient.db('gipsi').collection('itinerary');
 	const options = {
-		name: 'itinerary',
 		Model,
 		paginate
 	};

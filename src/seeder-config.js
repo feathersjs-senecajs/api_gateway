@@ -1,6 +1,7 @@
 const defaults = require('./defaults');
 const roles = require('./roles');
 const codeGenerator = require('./utils/code-gen');
+const buildObjectId = require('./mongodb.tools').createId;
 
 const poiCategories = [
 	'Accommodation',
@@ -20,16 +21,20 @@ const poiTypes = {
 		'Clases de Salsa'
 	]
 };
+const codes = codeGenerator('111111111', 5000);
 
 module.exports = {
 	delete: false,
-	services: [defaults.seedCode].concat(codeGenerator(defaults.seedCode, defaults.codeLimit))
-		.map(c => new Object({
-			path: 'itinerary-code',
-			template: {
-				code: c
-			}
-		})).concat(poiCategories.map(c => new Object({
+	disabled: true,
+	services: [defaults.seedCode].concat(codes)
+		.map(c => {
+			return {
+				path: 'itinerary-code',
+				template: {
+					code: c
+				}
+			};
+		}).concat(poiCategories.map(c => new Object({
 			path: 'poi-category',
 			template: {
 				name: c
@@ -39,7 +44,7 @@ module.exports = {
 					path: 'poi-type',
 					template: {
 						name: pT,
-						category: poiCat._id
+						category: buildObjectId(poiCat._id)
 					}
 				}));
 			}

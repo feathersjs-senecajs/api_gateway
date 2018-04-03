@@ -31,5 +31,6 @@
       "usernameField": "email",
       "passwordField": "password"
     }
-  }
+  },
+  "mongodb": "mongodb://192.168.20.182:27017/gipsi"
 }
