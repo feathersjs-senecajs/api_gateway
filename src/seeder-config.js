@@ -12,7 +12,6 @@ const poiTypes = {
 module.exports = {
 	disabled: true,
 	delete: false,
-	disabled: true,
 	services: poiCategories.map(c => new Object({
 		path: 'poi-category',
 		template: {
@@ -23,7 +22,7 @@ module.exports = {
 				path: 'poi-type',
 				template: {
 					name: pT,
-					category: poiCat._id
+					category: buildObjectId(poiCat._id)
 				}
 			}));
 		}

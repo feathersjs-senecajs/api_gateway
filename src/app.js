@@ -27,6 +27,10 @@ const seneca = require('seneca')()
 	.use('seneca-amqp-transport');
 const senecaConfig = require('./seneca');
 
+const seneca = require('seneca')()
+	.use('seneca-amqp-transport');
+const senecaConfig = require('./seneca');
+
 const app = feathers();
 
 // Load app configuration
@@ -41,6 +45,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get("public"), "favicon.ico")));
 // Host the public folder
 app.use("/", feathers.static(app.get("public")));
+
+app.set('seneca', seneca);
 
 app.set('seneca', seneca);
 

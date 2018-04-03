@@ -24,7 +24,7 @@ module.exports = function() {
 	const service = app.service("reservation");
 
 	service.hooks(hooks);
-	
+
 	if (service.filter) {
 		service.filter(filters);
 	}

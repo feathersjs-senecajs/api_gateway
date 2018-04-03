@@ -8,10 +8,6 @@ const { authenticate } = require('feathers-authentication').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 
-const { authenticate } = require('feathers-authentication').hooks;
-const restrictToRoles = require('../role-filter');
-const roles = require('../../roles');
-
 module.exports = {
 	before: {
 		all: [
