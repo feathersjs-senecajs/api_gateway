@@ -4,6 +4,7 @@ module.exports = {
 		nameAs: 'poi_types',
 		parentField: '_id',
 		childField: 'category',
-		asArray: true
+		asArray: true,
+		provider: undefined
 	}
 };

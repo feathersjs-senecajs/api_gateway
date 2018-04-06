@@ -27,10 +27,6 @@ const seneca = require('seneca')()
 	.use('seneca-amqp-transport');
 const senecaConfig = require('./seneca');
 
-const seneca = require('seneca')()
-	.use('seneca-amqp-transport');
-const senecaConfig = require('./seneca');
-
 const app = feathers();
 
 // Load app configuration
