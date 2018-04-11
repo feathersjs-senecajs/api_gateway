@@ -17,6 +17,8 @@ module.exports = function (app) {
 				reservationId: reservation._id
 			});
 		}
+		reservation._id = reservation.apiRefId;
+		delete reservation.apiRefId;
 		reservationSvc.emit('bound', {
 			data: reservation
 		});

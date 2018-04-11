@@ -13,6 +13,8 @@ module.exports = function () {
 		const paxIdList = hook.data.updatedReservation.pax;
 		
 		hook.data.updatedReservation.pax = await getPax(paxSvc, paxIdList);
+		hook.data.updatedReservation.apiRefId = hook.data.updatedReservation._id;
+		delete hook.data.updatedReservation._id;
 		msgManager.sendMessage(
 			senecaClient,
 			msPatterns.paxCodesAssignRequest, {
