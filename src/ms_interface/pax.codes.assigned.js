@@ -8,6 +8,7 @@ module.exports = function (app) {
 		const paxItineraryBindSvc = app.service('pax-itinerary-bind');
 		const reservationSvc = app.service('reservation');
 
+		reservation._id = reservation.apiRefId;
 		for (const p of msg.data) {
 			await paxSvc.patch(p._id, p);
 			await paxItineraryBindSvc.create({
@@ -17,7 +18,6 @@ module.exports = function (app) {
 				reservationId: reservation._id
 			});
 		}
-		reservation._id = reservation.apiRefId;
 		delete reservation.apiRefId;
 		reservationSvc.emit('bound', {
 			data: reservation
