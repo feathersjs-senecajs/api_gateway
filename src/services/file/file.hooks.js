@@ -2,7 +2,7 @@ const fileToURIParser = require('../../hooks/file.parser');
 const clearResponse = require('../../hooks/file.response');
 const logger = require('../../hooks/logger');
 
-const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 

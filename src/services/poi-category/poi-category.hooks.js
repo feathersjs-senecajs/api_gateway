@@ -6,7 +6,7 @@ const populateSchema = require('../../models/schemas/poi-category/poi-category-v
 const bundle = require('../../hooks/itinerary/bundle');
 const createUri = require('../../hooks/shared/uri.creator');
 
-const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 

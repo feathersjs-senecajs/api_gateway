@@ -2,30 +2,25 @@
 const createService = require('feathers-mongodb');
 const createModel = require('../../models/poi-category.model');
 const hooks = require('./poi-category.hooks');
-const filters = require('./poi-category.filters');
 
 module.exports = function () {
-	const app = this;
-	const paginate = app.get('paginate');
-	const mongoClient = app.get('mongoClient');
-	const Model = mongoClient.db('gipsi').collection('poi_category');
+    const app = this;
+    const paginate = app.get('paginate');
+    const mongoClient = app.get('mongoClient');
+    const Model = mongoClient.db('gipsi').collection('poi_category');
 
-	const options = {
+    const options = {
 		Model,
 		paginate
 	};
 
-	// Initialize our service with any options it requires
-	app.use('/poi-category', createService(options));
+    // Initialize our service with any options it requires
+    app.use('/poi-category', createService(options));
 
-	// Get our initialized service so that we can register hooks and filters
-	const service = app.service('poi-category');
+    // Get our initialized service so that we can register hooks and filters
+    const service = app.service('poi-category');
 
-	service.hooks(hooks);
-
-	if (service.filter) {
-		service.filter(filters);
-	}
+    service.hooks(hooks);
 };
 
 

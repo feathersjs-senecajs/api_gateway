@@ -5,12 +5,12 @@ const cors = require("cors");
 const helmet = require("helmet");
 const bodyParser = require("body-parser");
 
-const feathers = require("feathers");
-const configuration = require("feathers-configuration");
-const hooks = require("feathers-hooks");
+const feathers = require('@feathersjs/feathers');
+const express = require('@feathersjs/express');
+const configuration = require('@feathersjs/configuration');
 
-const socketio = require("feathers-socketio");
-const rest = require("feathers-rest");
+const socketio = require('@feathersjs/socketio');
+const rest = require('@feathersjs/express/rest');
 
 const middleware = require("./middleware");
 const services = require("./services");
@@ -27,7 +27,7 @@ const seneca = require('seneca')()
 	.use('seneca-amqp-transport');
 const senecaConfig = require('./seneca');
 
-const app = feathers();
+const app = express(feathers());
 
 // Load app configuration
 app.configure(configuration(path.join(__dirname, "..")));
@@ -40,14 +40,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(favicon(path.join(app.get("public"), "favicon.ico")));
 // Host the public folder
-app.use("/", feathers.static(app.get("public")));
+app.use("/", express.static(app.get("public")));
 
 app.set('seneca', seneca);
 
 app.set('seneca', seneca);
-
-// Set up Plugins and providers
-app.configure(hooks());
 
 app.configure(socketio());
 app.configure(rest());

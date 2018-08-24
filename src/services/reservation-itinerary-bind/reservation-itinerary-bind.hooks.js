@@ -4,7 +4,7 @@ const schema = require('../../models/schemas/reservation-itinerary-bind/reservat
 const updateReservation = require('../../hooks/reservation-itinerary-bind/update.reservation');
 const requestPaxBind = require('../../hooks/reservation-itinerary-bind/request.pax.bind');
 
-const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 

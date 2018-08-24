@@ -3,7 +3,7 @@ const validateSchema = require('feathers-hooks-common').validateSchema;
 const schema = require('../../models/schemas/poi-type/poi-type');
 const createUri = require('../../hooks/shared/uri.creator');
 
-const { authenticate } = require("feathers-authentication").hooks;
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const restrictToRoles = require("../role-filter");
 const roles = require("../../roles");
 

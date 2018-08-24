@@ -7,13 +7,17 @@ const populateEvents = require('../../hooks/itinerary/populate.events');
 
 const deleteEvents = require('../../hooks/delete-events');
 
-const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 
 module.exports = {
 	before: {
-		all: [authenticate('jwt')],
+		all: [
+			(hook) => { 
+				console.log(hook);
+			},
+			authenticate('jwt')],
 		find: [
 			restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])
 		],

@@ -1,5 +1,5 @@
 const MSGBROKER_CONN_TYPE = 'amqp';
-const MSGBROKER_CONN_URL = 'amqp://localhost:5672';
+const MSGBROKER_CONN_URL = 'amqp://192.168.20.182:3132';
 
 module.exports = {
 	codeLimit: 5,
