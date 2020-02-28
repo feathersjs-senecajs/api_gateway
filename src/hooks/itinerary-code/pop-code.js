@@ -3,8 +3,10 @@ module.exports = function () {
 		if (hook.result.data && Array.isArray(hook.result.data)) {
 			let codeSvc = hook.service;
 
-			hook.result.data.forEach((item, index) => { 
-				codeSvc.remove(item._id);
+			codeSvc.remove(null, {
+				code: {
+					$in: hook.result.data.map(item => item.code)
+				}
 			});
 		}
 	};

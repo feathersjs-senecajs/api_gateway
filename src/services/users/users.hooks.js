@@ -1,9 +1,9 @@
 const ajv = require('ajv');
 const validateSchema = require('feathers-hooks-common').validateSchema;
 const schema = require('../../models/schemas/auth/user');
-const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const commonHooks = require('feathers-hooks-common');
-const { hashPassword } = require('feathers-authentication-local').hooks;
+const { hashPassword } = require('@feathersjs/authentication-local').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 

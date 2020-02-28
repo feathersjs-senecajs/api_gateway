@@ -3,7 +3,7 @@ const validateSchema = require('feathers-hooks-common').validateSchema;
 const { mongoKeys, iff, isProvider } = require('feathers-hooks-common');
 const schema = require('../../models/schemas/pax/pax');
 
-const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 
@@ -28,8 +28,7 @@ module.exports = {
 			validateSchema(schema, ajv)
 		],
 		patch: [
-			restrictToRoles([roles.ADMIN, roles.OP]),
-			validateSchema(schema, ajv)
+			restrictToRoles([roles.ADMIN, roles.OP])
 		],
 		remove: [restrictToRoles([roles.ADMIN, roles.OP])]
 	},

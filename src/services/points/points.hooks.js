@@ -2,30 +2,36 @@ const ajv = require('ajv');
 const validateSchema = require('feathers-hooks-common').validateSchema;
 const schema = require('../../models/schemas/poi/poi');
 const geoJson = require('../../hooks/geojson');
+const updateGeoJson = require('../../hooks/points/add.poi.to.geojson');
+const initializePoi = require('../../hooks/points/initialize.poi');
 
 const populate = require('feathers-hooks-common').populate;
 const populateSchema = require('../../models/schemas/poi/poi-vm');
 
-const { authenticate } = require('feathers-authentication').hooks;
+const { authenticate } = require('@feathersjs/authentication').hooks;
 const restrictToRoles = require('../role-filter');
 const roles = require('../../roles');
 
 module.exports = {
 	before: {
-		all: [authenticate('jwt')],
+		all: [
+			(hook) => { 
+				console.log(hook);
+			},
+			authenticate('jwt')],
 		find: [restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])],
 		get: [restrictToRoles([roles.ADMIN, roles.OP, roles.GIPSI])],
 		create: [
 			restrictToRoles([roles.ADMIN, roles.OP]),
-			validateSchema(schema, ajv)
+			validateSchema(schema, ajv),
+			initializePoi()
 		],
 		update: [
 			restrictToRoles([roles.ADMIN, roles.OP]),
 			validateSchema(schema, ajv)
 		],
 		patch: [
-			restrictToRoles([roles.ADMIN, roles.OP]),
-			validateSchema(schema, ajv)
+			restrictToRoles([roles.ADMIN, roles.OP])
 		],
 		remove: [restrictToRoles([roles.ADMIN, roles.OP])]
 	},
@@ -40,7 +46,9 @@ module.exports = {
 			populate({ schema: populateSchema }),
 			geoJson()
 		],
-		create: [],
+		create: [
+			updateGeoJson()
+		],
 		update: [],
 		patch: [],
 		remove: []

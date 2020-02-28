@@ -6,6 +6,9 @@ module.exports = {
 		},
 		category: {
 			type: 'string'
+		},
+		uri: {
+			type: 'string'
 		}
 	},
 	required: ['name', 'category']
