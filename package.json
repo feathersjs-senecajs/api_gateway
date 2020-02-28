@@ -59,7 +59,7 @@
     "nedb": "^1.8.0",
     "npm": "^6.5.0",
     "rxjs": "^5.5.7",
-    "seneca": "^3.4.2",
+    "seneca": "^3.9.0",
     "seneca-amqp-transport": "^2.2.0",
     "serve-favicon": "^2.4.3",
     "winston": "^2.3.1"
