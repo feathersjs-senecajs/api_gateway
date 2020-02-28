@@ -1,6 +1,6 @@
 # gipsi
 
-> Backend API for gipsi system
+> Feathersjs API Gateway to manage gelocated places.
 
 ## About
 
